@@ -15,9 +15,9 @@
 
 .text {
     font-size: 20; 
-    width: 100%; 
+    width: 90%; 
     word-wrap: break-word; 
-    margin-left: 20px; 
+    margin-left: 20px;
 }
 
 #header {
@@ -76,7 +76,7 @@ h2 {
 
 .title{
     text-align: center; 
-    margin: 10px; 
+    margin: 10px 20px; 
 }
 
 .read{
@@ -84,6 +84,7 @@ h2 {
     height: 40px; 
     bottom: 0px; 
     width: 100%; 
+    font-size:18px; 
 }
 
 .read:hover{
@@ -96,6 +97,6 @@ button[data-key="true"]{
 }
 
 button[data-key="false"]{
-    background:rgb(211, 47, 47); 
+    background:rgb(243, 83, 83); 
     border: none; 
 }
