@@ -86,10 +86,16 @@ h2 {
     width: 100%; 
 }
 
+.read:hover{
+    border: 2px solid black; 
+}
+
 button[data-key="true"]{
     background:rgb(8, 248, 68); 
+    border: none; 
 }
 
 button[data-key="false"]{
     background:rgb(211, 47, 47); 
+    border: none; 
 }
