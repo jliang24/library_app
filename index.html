@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <link href="./style.css" rel="stylesheet">
+        <link href="./button.css" rel="stylesheet">
+    </head> 
+    <body> 
+        <h2>Welcome to your personal library that doesn't save!</h3>
+        <div id = "header">
+            <form id="library_form">
+                <label for="title">Book Title:</label>
+                <input size=45 type="text" id="title">
+                <label for="author">Author: </label> 
+                <input size=45 type="text" id="author">
+                <label for="pages">Number of pages: </label> 
+                <input size=3 type="text" id="pages">
+                <label for="onoffswitch">Have you read this already?</label>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch">
+                        <span class="onoffswitch-inner" value="yes"></span>
+                        <span class="onoffswitch-switch" value="no"></span>
+                    </label>
+                </div>
+                <button type="button" id="submit">Add Book</button> 
+            </form>
+        </div> 
+        <div id="card_container"></div>
+        <script src="./scripts.js"></script>
+    </body>
+</html>
