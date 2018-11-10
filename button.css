@@ -21,12 +21,12 @@
 .onoffswitch-inner:before {
     content: "YUP";
     padding-left: 10px;
-    background-color: rgb(12, 233, 104); color: #FFFFFF;
+    background-color: rgb(7, 218, 95); color: #FFFFFF;
 }
 .onoffswitch-inner:after {
     content: "NOPE";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+    background-color: rgb(253, 123, 123); color: #050505;
     text-align: right;
 }
 .onoffswitch-switch {

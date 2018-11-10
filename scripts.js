@@ -1,16 +1,27 @@
-let myLibrary = []; 
+let myLibrary = localStorage.getItem("library") ? JSON.parse(localStorage.getItem("library")) : [];   
 
-addBook("Harry Potter and the Goblet of Fire ", "J.K. Rowling", "430", false);
-addBook("The Winds of Winter", "George R. R. Martin","1400",true); 
-addBook("Of Mice and Men", "John Steinbeck", "187", true);
-
+if (myLibrary)
+    myLibrary.forEach((book)=> {
+    updatePage(book.id,book.title, book.author,book.pages,book.toggleState); 
+    return addingEventListeners(); 
+    }); 
 
 let form = document.querySelector('#library_form');
 let submit = document.querySelector('#submit'); 
 submit.addEventListener('click',(e) => {
     gatherDOM(); 
     form.reset(); 
+    localStorage.setItem("library",JSON.stringify(myLibrary)); 
+    console.log(myLibrary)
 }); 
+
+function gatherDOM(){
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value; 
+    const pages = document.querySelector('#pages').value; 
+    let toggleState = document.querySelector('#myonoffswitch').checked; 
+    addBook(title, author, pages, toggleState); 
+}
 
 function addBook(title, author, pages, toggleState){
     let id = myLibrary.length; 
@@ -21,8 +32,14 @@ function addBook(title, author, pages, toggleState){
                   pages,
                   toggleState,
                  }; 
+    updatePage(id,title,author,pages,toggleState); 
+    myLibrary.push(Book); 
+    addingEventListeners(); 
+}
+
+function updatePage(id, title, author, pages, toggleState){
     const cardContainer = document.querySelector('#card_container'); 
-    let cardContainerInner = `<div id=${myLibrary.length} class="card"> 
+    let cardContainerInner = `<div id=${id} class="card"> 
                                 <div class="middlediv"> 
                                     <h2 class="title">${title}</h3>
                                     <p class="text">Author: ${author}</p>
@@ -30,19 +47,23 @@ function addBook(title, author, pages, toggleState){
                                 </div> 
                                 <button data-key=${toggleState} class="read">Read: ${toggleState?"Yes":"No"}</button> 
                                 <img src="./trashcan.png" class="delete"></img> 
-                            </div>`
+                              </div>`
     cardContainer.innerHTML += cardContainerInner;  
-    myLibrary.push(Book); 
+}
+
+function addingEventListeners(){
     const reads = document.querySelectorAll('.read'); 
     reads.forEach((read) => read.addEventListener('click',(e)=>{
         let readid = e.target.parentElement.id;
         if(read.textContent == "Read: Yes"){ 
             myLibrary.find(book => book.id==readid).toggleState = false;
             read.setAttribute('data-key','false'); 
+            localStorage.setItem("library",JSON.stringify(myLibrary)); 
             return read.textContent = "Read: No"; 
         }
         myLibrary.find(book => book.id==readid).toggleState = true; 
         read.setAttribute('data-key','true'); 
+        localStorage.setItem("library",JSON.stringify(myLibrary)); 
         return read.textContent = "Read: Yes";
     }))
     const deletes = document.querySelectorAll('.delete'); 
@@ -51,9 +72,9 @@ function addBook(title, author, pages, toggleState){
         myLibrary.splice(id,1); 
         e.currentTarget.parentNode.remove(); 
         updateIds(myLibrary); 
+        localStorage.setItem("library",JSON.stringify(myLibrary)); 
     }))
 }
-
 function updateIds(library){
     let counter = 0; 
     library.forEach((book) =>{
@@ -68,12 +89,5 @@ function updateIds(library){
     }); 
 }
 
-function gatherDOM(){
-    const title = document.querySelector('#title').value;
-    const author = document.querySelector('#author').value; 
-    const pages = document.querySelector('#pages').value; 
-    let toggleState = document.querySelector('#myonoffswitch').checked; 
-    addBook(title, author, pages, toggleState); 
-}
 
 

@@ -124,3 +124,9 @@ button[data-key="false"]{
     height: 210px; 
     top: 0px; 
 }
+
+@-moz-document url-prefix() {
+    #header {
+      width: 550px; 
+    }
+  }
